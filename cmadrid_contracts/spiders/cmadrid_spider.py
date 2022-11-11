@@ -1,6 +1,6 @@
 import scrapy
 from cmadrid_contracts.items import ContractItem
-from scrapy.selector import Selector 
+
 
 class Cmadrid_Spider(scrapy.Spider):
     
