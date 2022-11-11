@@ -9,14 +9,20 @@ It scraps the "Buscador avanzado de contratos" of the "Portal de la Contratació
 
 ## Usage
 
-scrapy crawl cmadrid -O data.csv
+scrapy crawl cmadrid -O data/data.csv
 
 ## Options
 
 It can also scrap other type of contracts using the folowing url as starting url:
 
 Abierto [http://www.madrid.org/cs/Satellite?c=Page&cid=1224915242285&codigo=PCON_&idPagina=1224915242285&language=es&newPagina=1&numPagListado=5&pagename=PortalContratacion%2FComunes%2FPresentacion%2FPCON_resultadoBuscadorAvanzado&paginaActual=2&paginasTotal=3635&procedimientoAdjudicacion=Abierto&rootelement=PortalContratacion%2FComunes%2FPresentacion%2FPCON_resultadoBuscadorAvanzado&site=PortalContratacion]
+
+
 Negociado con publicidad [http://www.madrid.org/cs/Satellite?c=Page&cid=1224915242285&codigo=PCON_&idPagina=1224915242285&language=es&newPagina=1&numPagListado=5&pagename=PortalContratacion%2FComunes%2FPresentacion%2FPCON_resultadoBuscadorAvanzado&paginaActual=2&paginasTotal=17&procedimientoAdjudicacion=Negociado+con+publicidad&rootelement=PortalContratacion%2FComunes%2FPresentacion%2FPCON_resultadoBuscadorAvanzado&site=PortalContratacion]
+
+## Dataset
+
+Last dataset can be found under data directory.
 
 ## License
 
