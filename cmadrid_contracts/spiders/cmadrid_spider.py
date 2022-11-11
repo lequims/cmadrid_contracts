@@ -9,7 +9,7 @@ class Cmadrid_Spider(scrapy.Spider):
     
     # urls from which will be used to extract information
     # list should be named 'start_urls' only
-    #start_urls = ["https://www.madrid.org/cs/Satellite?c=Page&cid=1224915242285&codigo=PCON_&idPagina=1224915242285&language=es&newPagina=1&numPagListado=5&pagename=PortalContratacion%2FComunes%2FPresentacion%2FPCON_resultadoBuscadorAvanzado&paginaActual=2&paginasTotal=341616&rootelement=PortalContratacion%2FComunes%2FPresentacion%2FPCON_resultadoBuscadorAvanzado&site=PortalContratacion"]
+    
     start_urls = ["http://www.madrid.org/cs/Satellite?c=Page&cid=1224915242285&codigo=PCON_&idPagina=1224915242285&language=es&newPagina=1&numPagListado=5&pagename=PortalContratacion%2FComunes%2FPresentacion%2FPCON_resultadoBuscadorAvanzado&paginaActual=2&paginasTotal=1204&rootelement=PortalContratacion%2FComunes%2FPresentacion%2FPCON_resultadoBuscadorAvanzado&site=PortalContratacion&tipoPublicacion=Contratos+adjudicados+por+procedimientos+sin+publicidad"]
     base_url = 'https://www.madrid.org/'
 
@@ -23,7 +23,7 @@ class Cmadrid_Spider(scrapy.Spider):
        
         for contract in all_contracts_in_page:
             
-            contract_url = contract.xpath('.//a/@href').extract_first()
+            contract_url = contract.xpath('.//a/@href').get()
             yield scrapy.Request(self.base_url + contract_url, callback=self.parse_contract, meta={'page': page})
 
         next_page = response.xpath('//div[contains(@id, "pagSup")]/div[contains(@class, "caja")]/ul/li/a[contains (@class, "activo")]/following::li/a/@href').get()
@@ -45,16 +45,16 @@ class Cmadrid_Spider(scrapy.Spider):
         data_fields = {}
         
         for field in fields:
-            field_name = field.xpath('.//strong/text()').extract_first()
-            value = field.xpath('.//strong/following::br/following::text()').extract_first()
+            field_name = field.xpath('.//strong/text()').get()
+            value = field.xpath('.//strong/following::br/following::text()').get()
             
             if(field_name):
                 data_fields[field_name] = value   
 
         contract_item = ContractItem(
             
-            Objeto_del_contrato = response.xpath('//h2[contains(@class, "tit11gr3")]/text()').extract_first(),
-            plazo = response.xpath('//div[contains(@id, "cont_int_izdo")]/span/text()').extract_first(),
+            Objeto_del_contrato = response.xpath('//h2[contains(@class, "tit11gr3")]/text()').get(),
+            plazo = response.xpath('//div[contains(@id, "cont_int_izdo")]/span/text()').get(),
             url = response.url,
             Estado_de_la_licitación = data_fields.get('Estado de la licitación',None),
             Tipo_resolución = data_fields.get('Tipo resolución',None),
@@ -87,7 +87,7 @@ class Cmadrid_Spider(scrapy.Spider):
         if contractor_line:
             for contractor in contractor_line:
                         
-                contract_item['N_Lote'] = contractor.xpath('.//td[1]/text()').extract()
+                contract_item['N_Lote'] = contractor.xpath('.//td[1]/text()').get()
                 contract_item['N_Ofertas'] = contractor.xpath('.//td[2]/text()').get()
                 contract_item['Resultado'] = contractor.xpath('.//td[3]/text()').get()
                 contract_item['NIF_adjudicatario'] = contractor.xpath('.//td[4]/text()').get()
