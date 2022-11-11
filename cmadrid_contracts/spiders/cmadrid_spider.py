@@ -26,11 +26,10 @@ class Cmadrid_Spider(scrapy.Spider):
             contract_url = contract.xpath('.//a/@href').get()
             yield scrapy.Request(self.base_url + contract_url, callback=self.parse_contract, meta={'page': page})
 
+        # Check is there are a next page link
         next_page = response.xpath('//div[contains(@id, "pagSup")]/div[contains(@class, "caja")]/ul/li/a[contains (@class, "activo")]/following::li/a/@href').get()
 
-        #yield scrapy.Request("https://www.madrid.org//cs/Satellite?c=CM_ConvocaPrestac_FA&cid=1354931493274&definicion=Contratos+Publicos&idPagina=1224915242285&language=es&op2=PCON&pagename=PortalContratacion%2FPage%2FPCON_contratosPublicos&tipoServicio=CM_ConvocaPrestac_FA", callback=self.parse_contract, meta={'page': page})
-
-        
+        # if a next page exists continue scraping
         if next_page:
             yield scrapy.Request(
                 url = self.base_url + next_page,
@@ -77,8 +76,6 @@ class Cmadrid_Spider(scrapy.Spider):
             
     
         )
-
-        # response.xpath('//table/tbody/tr/td[contains (@class, "tdadjud")]/text()').get() adjudicatari
 
         # Look for contractors
 
