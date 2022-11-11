@@ -26,6 +26,6 @@ Last dataset can be found under data directory.
 
 ## License
 
-Reconeixement-NoComercial 4.0 Internacional de Creative Commons (https://i.creativecommons.org/l/by-nc/4.0/80x15.png)](http://creativecommons.org/licenses/by-nc/4.0/)
+Reconeixement-NoComercial 4.0 Internacional de Creative Commons [(https://i.creativecommons.org/l/by-nc/4.0/80x15.png)](http://creativecommons.org/licenses/by-nc/4.0/)
 
 
