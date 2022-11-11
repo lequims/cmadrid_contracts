@@ -18,8 +18,8 @@ class Cmadrid_Spider(scrapy.Spider):
         all_contracts_in_page =  response.xpath('//div[contains(@class, "cajaBlanca")]/div[contains(@class, "cajaBlancaDosL")]')
         
         # Extrating link to every contract
-        sel = Selector(response)
-        page = sel.xpath('//div[contains(@class, "caja")]/ul/li/a[contains (@class, "activo")]/text()').get()
+        
+        page = response.xpath('//div[contains(@class, "caja")]/ul/li/a[contains (@class, "activo")]/text()').get()
        
         for contract in all_contracts_in_page:
             
