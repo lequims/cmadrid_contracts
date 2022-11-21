@@ -3,7 +3,7 @@
 
 # CMADRID CONTRACTS
 
-WebScrapping project for "Tipologia i cicle de vida de les dades" at UOC (https://uoc.edu)
+WebScrapping project for "Tipologia i cicle de vida de les dades" at UOC (https://uoc.edu) by Miquel Piulats and Miquel Muntaner. 
 
 It scraps the "Buscador avanzado de contratos" of the "Portal de la Contratación Pública de la Comunidad de Madrid" and creates a dataset with all "Negociado sin publicidad" contracts.
 
